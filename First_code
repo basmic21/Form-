@@ -1,0 +1,158 @@
+html>
+ <head> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <style>
+          body {
+            
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: Green;
+            
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+          
+          .container {
+            padding: 16px;
+            background-color: white;
+          }
+          
+          input[type=text], input[type=username] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+          }
+          
+          input[type=text]:focus, input[type=username]:focus {
+            background-color: #ddd;
+            outline: none;
+          }
+          
+          h1 {
+            color: black;
+            text align: center;
+            font-size: 50px;
+          }
+          
+          .registerbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+          }
+          
+          . Get pin:hover {
+            opacity: 1;
+          }
+          
+          a {
+            color: dodgerblue;
+         
+      Please v    }
+          
+  
+          
+     </style> 
+ </head> 
+ <body> 
+  <h1>Form Registration</h1> 
+  <form method="POST" action=""> 
+   <!-- Username --> 
+   <input type="text" name="username" id="username" placeholder="username"> 
+   <br> 
+   <!-- new line will be created --> 
+   <!-- Phone number --> 
+   <input type="text" name="phone-number" id="phone-number" placeholder="Phone number"> 
+   <br> 
+   <!-- email --> 
+   <input type="text" name="email" id="email" placeholder="email"> 
+   <br> 
+   <!-- Submit --> 
+   <input type="submit" name="submit" value="Get pin"> 
+   <a href="page2.html"> <br> <br> <br> <br> 
+    <!-- Pin input box --> <input type="text" name="pin" id="pin" placeholder="Enter pin here to get data"> 
+    <!-- A new line --> <br> 
+    <!-- Submit --> <input type="submit" name="submit-pin" value="Get pin"> 
+    <!--?php
+  function generatePin($number_of_digits)
+  {
+      // Generate a random digit between 0 and 10 i.e.
+      // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+      $pin = '';
+    
+      // Loop n times
+      for($i = 0; $i < $number_of_digits; $i++){
+          $pin = $pin . rand(0, 10); 
+      }
+    
+      return $pin;
+  }
+
+  // Variables needed to connect to database
+    $hostname = '127.0.0.1'; // The name or ip of the location of database server in this case localhost on port 3306
+    $username = 'root'; // The username to connect to database
+    $password = ''; // The password to connect to database
+    $database_name = 'tempDB'; // The name of the database
+
+    // Create connection to database
+    $conn = mysqli_connect($hostname, $username, $password, $database_name) or die('Failed to connect to DB');
+
+    if(isset($_POST['submit']))
+    {
+      // Continue processing data
+      // Lets get the data we really wanted
+      $username = $_POST['username'];
+      
+      $email = $_POST['email'];
+      
+      $phone_number = $_POST['phone-number'];
+      
+      // Get the pin
+      $pin = generatePin(10);
+      
+      // Create an sql query to store data in the database
+      $sql = "INSERT INTO users (pin, username, email, phone_number) VALUES ('$pin', '$username', '$email', '$phone_number')";
+      
+      // Run the query
+      if(mysqli_query($conn, $sql))
+      {
+          // Query was successful
+          // Return the pin to the user
+          echo 'Your pin is: ' . $pin;
+      }
+      else
+      {
+          // Query was not successful
+          // Print the error
+          echo 'Query was not successfull the error is ' . mysqli_error($conn);
+      }
+  }
+
+    // Handles gettting details once the pin is entered
+  if(isset($_POST['submit-pin']))
+  {
+        $pin = $_POST['pin'];
+
+        // Create an sql query to store data in the database
+        $sql = "SELECT * FROM users WHERE pin = $pin";
+
+        // Run the query
+        if($data = mysqli_query($conn, $sql))
+        {
+            // Query was successful
+           // Retrieve the user data and print it
+            
+  </form> 
+ </body>
+</html>--></a>
+  </form>
+ </body>
+</html>
